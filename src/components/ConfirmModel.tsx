@@ -34,7 +34,8 @@ export default function ConfirmModel({ isOpen, title, message, onConfirm, onCanc
       alignItems: 'center',
       zIndex: 999999,
       backdropFilter: 'blur(4px)',
-      animation: 'fadeIn 0.2s ease-out'
+      animation: 'fadeIn 0.2s ease-out forwards',
+      willChange: 'opacity, backdrop-filter'
     }}>
       <div style={{
         backgroundColor: 'var(--card-bg)',
@@ -43,10 +44,11 @@ export default function ConfirmModel({ isOpen, title, message, onConfirm, onCanc
         padding: '32px',
         width: '90%',
         maxWidth: '400px',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6)',
         display: 'flex',
         flexDirection: 'column',
-        animation: 'ModelIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+        animation: 'ModelIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+        willChange: 'transform, opacity'
       }}>
         <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)' }}>{title}</h3>
         <p style={{ margin: '0 0 32px 0', fontSize: '15px', lineHeight: '1.6', color: 'var(--text-secondary)' }}>{message}</p>
