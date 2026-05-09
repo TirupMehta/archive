@@ -1,5 +1,6 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface SubscriptionModelProps {
   isOpen: boolean;
@@ -7,9 +8,15 @@ interface SubscriptionModelProps {
 }
 
 export default function SubscriptionModel({ isOpen, onClose }: SubscriptionModelProps) {
-  if (!isOpen) return null;
+  const [mounted, setMounted] = useState(false);
 
-  return (
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!isOpen || !mounted) return null;
+
+  return createPortal(
     <div className="Model-overlay">
       <div className="Model-content sub-premium-Model">
         <div className="sub-header">
@@ -54,7 +61,7 @@ export default function SubscriptionModel({ isOpen, onClose }: SubscriptionModel
 
         <div className="sub-footer">
           <p>Activation is <strong>free</strong>. Contact the developer to unlock.</p>
-          <a href="mailto:tirupmehta1@gmail.com?subject=Archive Pro Activation" className="sub-action-btn">
+          <a href="mailto:contact@tirup.in?subject=Archive Pro Activation" className="sub-action-btn">
             Contact to Activate
           </a>
         </div>
@@ -63,6 +70,7 @@ export default function SubscriptionModel({ isOpen, onClose }: SubscriptionModel
           Maybe Later
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

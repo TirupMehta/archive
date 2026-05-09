@@ -26,32 +26,46 @@ export default function ConfirmModel({ isOpen, title, message, onConfirm, onCanc
       position: 'fixed',
       top: 0,
       left: 0,
+      right: 0,
+      bottom: 0,
       width: '100vw',
       height: '100vh',
-      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      zIndex: 999999,
-      backdropFilter: 'blur(4px)',
-      animation: 'fadeIn 0.2s ease-out forwards',
-      willChange: 'opacity, backdrop-filter'
+      zIndex: 99999999,
+      backdropFilter: 'blur(8px)',
+      padding: '20px',
+      boxSizing: 'border-box'
     }}>
       <div style={{
-        backgroundColor: 'var(--card-bg)',
-        border: '1px solid var(--card-border)',
+        backgroundColor: '#1e1e1e',
+        border: '1px solid #262626',
         borderRadius: '24px',
         padding: '32px',
-        width: '90%',
-        maxWidth: '400px',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6)',
+        width: '100%',
+        maxWidth: '420px',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.9)',
         display: 'flex',
         flexDirection: 'column',
-        animation: 'ModelIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
-        willChange: 'transform, opacity'
+        position: 'relative'
       }}>
-        <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)' }}>{title}</h3>
-        <p style={{ margin: '0 0 32px 0', fontSize: '15px', lineHeight: '1.6', color: 'var(--text-secondary)' }}>{message}</p>
+        <h3 style={{ 
+          margin: '0 0 12px 0', 
+          fontSize: '20px', 
+          fontWeight: 700, 
+          color: '#ededed',
+          fontFamily: 'Inter, sans-serif'
+        }}>{title}</h3>
+        
+        <p style={{ 
+          margin: '0 0 32px 0', 
+          fontSize: '15px', 
+          lineHeight: '1.6', 
+          color: '#a1a1aa',
+          fontFamily: 'Inter, sans-serif'
+        }}>{message}</p>
         
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
           <button 
@@ -64,12 +78,10 @@ export default function ConfirmModel({ isOpen, title, message, onConfirm, onCanc
               cursor: 'pointer', 
               transition: 'all 0.2s', 
               backgroundColor: 'transparent', 
-              border: '1px solid var(--card-border)', 
-              color: 'var(--text-primary)',
+              border: '1px solid #262626', 
+              color: '#ededed',
               fontFamily: 'inherit'
             }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--hover-bg)'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
           >
             Cancel
           </button>
@@ -88,8 +100,6 @@ export default function ConfirmModel({ isOpen, title, message, onConfirm, onCanc
               fontFamily: 'inherit',
               boxShadow: `0 4px 12px ${confirmColor}44`
             }}
-            onMouseOver={(e) => e.currentTarget.style.opacity = '0.9'}
-            onMouseOut={(e) => e.currentTarget.style.opacity = '1'}
           >
             {confirmText}
           </button>

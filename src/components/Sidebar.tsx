@@ -13,26 +13,14 @@ interface SidebarProps {
   activeProjectId: string | null;
   createProject: () => void;
   switchProject: (id: string) => void;
-  deleteProject: (id: string) => void;
+  onDeleteClick: (id: string) => void;
 }
 
-export default function Sidebar({ user, isOpen, onClose, projects, activeProjectId, createProject, switchProject, deleteProject }: SidebarProps) {
-  const [projectToDelete, setProjectToDelete] = useState<string | null>(null);
-
+export default function Sidebar({ user, isOpen, onClose, projects, activeProjectId, createProject, switchProject, onDeleteClick }: SidebarProps) {
   if (!user) return null;
 
   return (
     <>
-      <ConfirmModel 
-        isOpen={!!projectToDelete}
-        title="Delete Project?"
-        message="This will permanently delete this note. This action cannot be undone."
-        onConfirm={() => {
-          if (projectToDelete) deleteProject(projectToDelete);
-          setProjectToDelete(null);
-        }}
-        onCancel={() => setProjectToDelete(null)}
-      />
       <div className={`sidebar-overlay ${isOpen ? 'open' : ''}`} onClick={onClose}></div>
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
@@ -72,7 +60,7 @@ export default function Sidebar({ user, isOpen, onClose, projects, activeProject
                 className="delete-btn" 
                 onClick={(e) => {
                   e.stopPropagation();
-                  setProjectToDelete(project.id);
+                  onDeleteClick(project.id);
                 }}
                 aria-label="Delete project"
               >

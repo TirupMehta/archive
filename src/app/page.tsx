@@ -41,11 +41,14 @@ const extensions = [
   })
 ];
 
+import ConfirmModel from '@/components/ConfirmModel';
+
 export default function Home() {
   const { user, loading, isPro } = useAuth();
   const { content, handleChange, isInitializing, projects, activeProjectId, createProject, switchProject, deleteProject, saveStatus, manualSave } = useEditorSync(user);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [projectToDelete, setProjectToDelete] = useState<string | null>(null);
   const [currentActiveId, setCurrentActiveId] = useState<string | null>(null);
 
   const [settings, setSettings] = useState({
@@ -116,7 +119,7 @@ export default function Home() {
         activeProjectId={activeProjectId} 
         createProject={createProject} 
         switchProject={(id) => { switchProject(id); setIsSidebarOpen(false); }} 
-        deleteProject={deleteProject} 
+        onDeleteClick={(id) => setProjectToDelete(id)} 
       />
       <TopBar 
         user={user} 
@@ -157,6 +160,16 @@ export default function Home() {
           {words} words | {chars} characters
         </div>
       )}
+      <ConfirmModel 
+        isOpen={!!projectToDelete}
+        title="Delete Project?"
+        message="This will permanently delete this note. This action cannot be undone."
+        onConfirm={() => {
+          if (projectToDelete) deleteProject(projectToDelete);
+          setProjectToDelete(null);
+        }}
+        onCancel={() => setProjectToDelete(null)}
+      />
     </>
   );
 }
