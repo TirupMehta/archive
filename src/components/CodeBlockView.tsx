@@ -33,7 +33,7 @@ export default function CodeBlockView({ node }: { node: any }) {
             </svg>
           )}
         </button>
-        <pre className="code-block-pre"><NodeViewContent as="code" /></pre>
+        <pre className="code-block-pre"><code><NodeViewContent /></code></pre>
       </div>
     </NodeViewWrapper>
   );
