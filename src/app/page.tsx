@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useEditorSync } from '@/hooks/useEditorSync';
 import TopBar from '@/components/TopBar';
@@ -15,37 +15,36 @@ import Placeholder from '@tiptap/extension-placeholder';
 import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
 import CodeBlockView from '@/components/CodeBlockView';
-
-const extensions = [
-  StarterKit.configure({
-    codeBlock: false, // use our custom CodeBlock with copy button
-  }),
-  CodeBlock.extend({
-    addNodeView() {
-      return ReactNodeViewRenderer(CodeBlockView);
-    },
-  }),
-  Underline,
-  Link.configure({
-    openOnClick: false,
-    autolink: true,
-    linkOnPaste: true,
-    HTMLAttributes: {
-      class: 'editor-link',
-      rel: 'noopener noreferrer',
-      target: '_blank',
-    },
-  }),
-  Placeholder.configure({
-    placeholder: 'Start writing...',
-  })
-];
-
 import ConfirmModel from '@/components/ConfirmModel';
 
 export default function Home() {
   const { user, loading, isPro } = useAuth();
   const { content, handleChange, isInitializing, projects, activeProjectId, createProject, switchProject, deleteProject, saveStatus, manualSave } = useEditorSync(user);
+
+  const extensions = useMemo(() => [
+    StarterKit.configure({
+      codeBlock: false, // use our custom CodeBlock with copy button
+    }),
+    CodeBlock.extend({
+      addNodeView() {
+        return ReactNodeViewRenderer(CodeBlockView);
+      },
+    }),
+    Underline,
+    Link.configure({
+      openOnClick: false,
+      autolink: true,
+      linkOnPaste: true,
+      HTMLAttributes: {
+        class: 'editor-link',
+        rel: 'noopener noreferrer',
+        target: '_blank',
+      },
+    }),
+    Placeholder.configure({
+      placeholder: 'Start writing...',
+    })
+  ], []);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [projectToDelete, setProjectToDelete] = useState<string | null>(null);
