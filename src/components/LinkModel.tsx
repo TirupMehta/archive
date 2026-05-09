@@ -32,48 +32,49 @@ export default function LinkModel({ isOpen, initialText, initialUrl, onConfirm, 
       position: 'fixed',
       top: 0,
       left: 0,
+      right: 0,
+      bottom: 0,
       width: '100vw',
       height: '100vh',
-      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      zIndex: 999999,
-      backdropFilter: 'blur(4px)',
-      animation: 'fadeIn 0.2s ease-out forwards',
-      willChange: 'opacity, backdrop-filter'
+      zIndex: 99999999,
+      backdropFilter: 'blur(8px)',
+      padding: '20px',
+      boxSizing: 'border-box'
     }}>
       <div style={{
-        backgroundColor: 'var(--card-bg)',
-        border: '1px solid var(--card-border)',
+        backgroundColor: '#1e1e1e',
+        border: '1px solid #262626',
         borderRadius: '24px',
         padding: '32px',
-        width: '90%',
+        width: '100%',
         maxWidth: '400px',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6)',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.9)',
         display: 'flex',
         flexDirection: 'column',
-        animation: 'ModelIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
-        willChange: 'transform, opacity'
+        position: 'relative'
       }}>
-        <h3 style={{ margin: '0 0 24px 0', fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)' }}>Insert Link</h3>
+        <h3 style={{ margin: '0 0 24px 0', fontSize: '20px', fontWeight: 700, color: '#ededed', fontFamily: 'Inter, sans-serif' }}>Insert Link</h3>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '32px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Text to display</label>
+            <label style={{ fontSize: '12px', fontWeight: 600, color: '#a1a1aa', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Text to display</label>
             <input 
               type="text" 
               value={text} 
               onChange={(e) => setText(e.target.value)}
               placeholder="Enter text"
               autoFocus
-              style={{ width: '100%', padding: '14px 18px', backgroundColor: 'var(--bg-color)', border: '1px solid var(--card-border)', borderRadius: '12px', color: 'var(--text-primary)', fontSize: '15px', outline: 'none', transition: 'border-color 0.2s' }}
-              onFocus={(e) => e.target.style.borderColor = 'var(--text-secondary)'}
-              onBlur={(e) => e.target.style.borderColor = 'var(--card-border)'}
+              style={{ width: '100%', padding: '14px 18px', backgroundColor: '#171717', border: '1px solid #262626', borderRadius: '12px', color: '#ededed', fontSize: '15px', outline: 'none', transition: 'border-color 0.2s' }}
+              onFocus={(e) => e.target.style.borderColor = '#404040'}
+              onBlur={(e) => e.target.style.borderColor = '#262626'}
             />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Link URL</label>
+            <label style={{ fontSize: '12px', fontWeight: 600, color: '#a1a1aa', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Link URL</label>
             <input 
               type="text" 
               value={url} 
@@ -82,9 +83,9 @@ export default function LinkModel({ isOpen, initialText, initialUrl, onConfirm, 
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && url) onConfirm(text, url);
               }}
-              style={{ width: '100%', padding: '14px 18px', backgroundColor: 'var(--bg-color)', border: '1px solid var(--card-border)', borderRadius: '12px', color: 'var(--text-primary)', fontSize: '15px', outline: 'none', transition: 'border-color 0.2s' }}
-              onFocus={(e) => e.target.style.borderColor = 'var(--text-secondary)'}
-              onBlur={(e) => e.target.style.borderColor = 'var(--card-border)'}
+              style={{ width: '100%', padding: '14px 18px', backgroundColor: '#171717', border: '1px solid #262626', borderRadius: '12px', color: '#ededed', fontSize: '15px', outline: 'none', transition: 'border-color 0.2s' }}
+              onFocus={(e) => e.target.style.borderColor = '#404040'}
+              onBlur={(e) => e.target.style.borderColor = '#262626'}
             />
           </div>
         </div>
@@ -92,8 +93,8 @@ export default function LinkModel({ isOpen, initialText, initialUrl, onConfirm, 
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
           <button 
             onClick={onCancel}
-            style={{ padding: '12px 24px', borderRadius: '12px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', backgroundColor: 'transparent', border: '1px solid var(--card-border)', color: 'var(--text-primary)', fontFamily: 'inherit' }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--hover-bg)'}
+            style={{ padding: '12px 24px', borderRadius: '12px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', backgroundColor: 'transparent', border: '1px solid #262626', color: '#ededed', fontFamily: 'inherit' }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#262626'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
           >
             Cancel
@@ -101,7 +102,7 @@ export default function LinkModel({ isOpen, initialText, initialUrl, onConfirm, 
           <button 
             disabled={!url}
             onClick={() => onConfirm(text, url)}
-            style={{ padding: '12px 24px', borderRadius: '12px', fontSize: '14px', fontWeight: 600, cursor: url ? 'pointer' : 'not-allowed', transition: 'all 0.2s', backgroundColor: url ? 'var(--text-primary)' : 'rgba(255,255,255,0.15)', border: 'none', color: '#171717', fontFamily: 'inherit' }}
+            style={{ padding: '12px 24px', borderRadius: '12px', fontSize: '14px', fontWeight: 600, cursor: url ? 'pointer' : 'not-allowed', transition: 'all 0.2s', backgroundColor: url ? '#ededed' : 'rgba(255,255,255,0.1)', border: 'none', color: '#171717', fontFamily: 'inherit' }}
             onMouseOver={(e) => { if(url) e.currentTarget.style.opacity = '0.9'; }}
             onMouseOut={(e) => { if(url) e.currentTarget.style.opacity = '1'; }}
           >
