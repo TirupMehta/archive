@@ -2,7 +2,7 @@
   <h1>Archive</h1>
   <p>Minimalist writing app with AI formatting and real-time cloud sync.</p>
 
-  <img src="https://img.shields.io/github/license/TirupMehta/archive?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License" />
   <img src="https://img.shields.io/github/last-commit/TirupMehta/archive?style=flat-square" alt="Last Commit" />
   <img src="https://img.shields.io/website?url=https%3A%2F%2Farchive.tirup.in&style=flat-square" alt="Website" />
 
