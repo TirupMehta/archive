@@ -87,8 +87,10 @@ export default function Home() {
   // Sync editor content when switching projects
   useEffect(() => {
     if (editor && activeProjectId && activeProjectId !== currentActiveId) {
-      editor.commands.setContent(content);
       setCurrentActiveId(activeProjectId);
+      setTimeout(() => {
+        editor.commands.setContent(content);
+      }, 0);
     }
   }, [activeProjectId, editor, content, currentActiveId]);
 

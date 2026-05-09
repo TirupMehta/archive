@@ -13,7 +13,7 @@ export default function BottomCard() {
     <div className="bottom-card">
       <button className="close-btn" onClick={() => setIsVisible(false)}>×</button>
       <h3 className="card-title">Get the full experience</h3>
-      <p className="card-desc">Sign in or create your account.<br/><a href="#" className="card-link">Learn more</a></p>
+      <p className="card-desc">Sign in or create your account.<br/><a href="/privacy" className="card-link">Learn more</a></p>
       <button className="card-btn" onClick={() => router.push('/login')}>Sign in</button>
     </div>
   );
